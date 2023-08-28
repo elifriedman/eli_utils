@@ -12,9 +12,4 @@ d = { 'settings': { 'branch': 'main',
                                     'eli_utils.plotting.imshow': ('plotting.html#imshow', 'eli_utils/plotting.py')},
             'eli_utils.video': { 'eli_utils.video.get_video_properties': ('video.html#get_video_properties', 'eli_utils/video.py'),
                                  'eli_utils.video.load_frames': ('video.html#load_frames', 'eli_utils/video.py'),
-                                 'eli_utils.video.process_video_frames': ('video.html#process_video_frames', 'eli_utils/video.py')},
-            'eli_utils.video_utils': { 'eli_utils.video_utils.get_video_properties': ( 'video_utils.html#get_video_properties',
-                                                                                       'eli_utils/video_utils.py'),
-                                       'eli_utils.video_utils.load_frames': ('video_utils.html#load_frames', 'eli_utils/video_utils.py'),
-                                       'eli_utils.video_utils.process_video_frames': ( 'video_utils.html#process_video_frames',
-                                                                                       'eli_utils/video_utils.py')}}}
+                                 'eli_utils.video.process_video_frames': ('video.html#process_video_frames', 'eli_utils/video.py')}}}
