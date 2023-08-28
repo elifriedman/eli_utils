@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "eli_utils"
+  site-url: "https://elifriedman.github.io/eli_utils"
+  description: "Useful utilities I re-use in multiple projects"
+  repo-branch: main
+  repo-url: "https://github.com/elifriedman/eli_utils"
