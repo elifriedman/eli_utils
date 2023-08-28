@@ -9,6 +9,24 @@ documentation.
 ## Install
 
 ``` sh
-pip install eli_utils
+pip install 'git+https://github.com/elifriedman/eli_utils.git'
 ```
 
+## How to Use
+``` python
+from PIL import Image
+import numpy as np
+from eli_utils import imshow, image_grid, load_json, save_json, get_video_properties
+
+image1 = Image.open("file1.png")
+image2 = np.zeros((128, 128, 3))
+image3 = np.ones((128, 128, 3))
+imshow(image3)
+image_grid([image1, image2], shape=(2, 1))
+
+my_dict = {"a": 1, "b": 2}
+save_json(my_dict, 'file.json')
+loaded_dict = load_json('file.json')
+
+frame_count, fps, duration = get_video_properties("myvideo.mp4")
+```
