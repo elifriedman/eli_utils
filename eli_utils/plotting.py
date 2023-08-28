@@ -16,18 +16,19 @@ def imshow(im, figsize=(9, 9), ticks=False, **kwargs):
     if ticks is False:
         plt.xticks([])
         plt.yticks([])
-    plt.imshow(im)
+    plt.imshow(im, **kwargs)
 
 
-def image_grid(images, shape, figsize=(18, 9)):
+def image_grid(images, shape, figsize=(18, 9), **kwargs):
     assert len(images) == np.prod(shape)
     fig, axes = plt.subplots(*shape, figsize=figsize)
+    fig.set_layout_engine(layout="compressed")
     axes = axes.reshape(shape)
     rows, columns = shape
     for x in range(rows):
         for y in range(columns):
             i = x * columns + y
-            axes[x, y].imshow(images[i])
+            axes[x, y].imshow(images[i], **kwargs)
             axes[x, y].set_xticks([])
             axes[x, y].set_yticks([])
 
