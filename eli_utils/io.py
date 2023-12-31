@@ -9,6 +9,16 @@ import pickle
 
 
 # %% ../notebooks/io.ipynb 3
+def load_txt(f):
+    with open(f) as f:
+        return f.read()
+
+
+def save_txt(s, f):
+    with open(f, "w") as f:
+        f.write(s)
+
+
 def load_json(f):
     with open(f) as f:
         return json.load(f)
