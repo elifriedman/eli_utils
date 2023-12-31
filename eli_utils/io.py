@@ -6,6 +6,7 @@ __all__ = ["load_json", "save_json", "load_pickle", "save_pickle"]
 # %% ../notebooks/io.ipynb 2
 import json
 import pickle
+from pathlib import Path
 
 
 # %% ../notebooks/io.ipynb 3
