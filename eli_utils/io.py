@@ -20,12 +20,12 @@ def save_txt(s, f):
         f.write(s)
 
 
-def load_json(f):
+def load_json(f, **kwargs):
     with open(f) as f:
-        return json.load(f)
+        return json.load(f, **kwargs)
 
 
-def save_json(obj, f, pretty: bool = False, append: bool = False):
+def save_json(obj, f, pretty: bool = False, append: bool = False, **kwargs):
     if append is True and Path(f).exists():
         data = load_json(f)
         if isinstance(data, list):
@@ -34,7 +34,7 @@ def save_json(obj, f, pretty: bool = False, append: bool = False):
         else:
             obj = [data, obj]
     with open(f, "w") as f:
-        json.dump(obj, f, indent=4 if pretty is True else None)
+        json.dump(obj, f, indent=4 if pretty is True else None, **kwargs)
 
 
 # %% ../notebooks/io.ipynb 4
