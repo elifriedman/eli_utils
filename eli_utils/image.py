@@ -14,3 +14,14 @@ def resize_image(image: Image.Image, desired_size: int):
     resized_image = image.resize((new_width, new_height))
     return resized_image
 
+def change_dpi(image: Image.Image, output_path: str, dpi: int = 300):
+    dpi = (dpi, dpi)
+    image.info['dpi'] = dpi
+    image.save(output_path, dpi=dpi)
+
+
+def change_dpi_from_file(input_path, output_path: str, dpi: int = 300):
+    image = Image.open(input_path)
+    dpi = (dpi, dpi)
+    image.info['dpi'] = dpi
+    image.save(output_path, dpi=dpi)
