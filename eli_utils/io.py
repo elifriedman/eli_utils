@@ -11,17 +11,17 @@ from pathlib import Path
 
 # %% ../notebooks/io.ipynb 3
 def load_txt(f):
-    with open(f) as f:
+    with open(f, encoding="utf-8") as f:
         return f.read()
 
 
 def save_txt(s, f):
-    with open(f, "w") as f:
+    with open(f, "w", encoding="utf-8") as f:
         f.write(s)
 
 
 def load_json(f, **kwargs):
-    with open(f) as f:
+    with open(f, encoding="utf-8") as f:
         return json.load(f, **kwargs)
 
 
@@ -33,7 +33,7 @@ def save_json(obj, f, pretty: bool = False, append: bool = False, **kwargs):
             obj = data
         else:
             obj = [data, obj]
-    with open(f, "w") as f:
+    with open(f, "w", encoding="utf-8") as f:
         json.dump(obj, f, indent=4 if pretty is True else None, **kwargs)
 
 
