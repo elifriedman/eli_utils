@@ -25,3 +25,18 @@ def change_dpi_from_file(input_path, output_path: str, dpi: int = 300):
     dpi = (dpi, dpi)
     image.info['dpi'] = dpi
     image.save(output_path, dpi=dpi)
+
+def transform_image_to_k_colors(image: np.ndarray, num_clusters: int) -> np.ndarray:
+    from sklearn.cluster import KMeans
+
+
+    h, w, c = image.shape
+    image_flattened = image.reshape((h * w, c))
+
+    kmeans = KMeans(n_clusters=num_clusters, n_init="auto")
+    kmeans.fit(image_flattened)
+    labels = kmeans.predict(image_flattened)
+    centroid_colors = kmeans.cluster_centers_.astype(int)
+    transformed_image = centroid_colors[labels].reshape((h, w, c))
+
+    return transformed_image
