@@ -1,3 +1,5 @@
+import numpy as np
+import cv2
 from PIL import Image
 
 def resize_image(image: Image.Image, desired_size: int):
@@ -40,3 +42,13 @@ def transform_image_to_k_colors(image: np.ndarray, num_clusters: int) -> np.ndar
     transformed_image = centroid_colors[labels].reshape((h, w, c))
 
     return transformed_image
+
+def make_canny(image: np.ndarray, low: int = 100, high: int=200):
+    is_pil = isinstance(image, Image.Image):
+    image = np.array(image)
+    canny_image = cv2.Canny(image, low, high)
+    canny_image = canny_image[:, :, None]
+    if is_pil:
+        canny_image = np.concatenate([canny_image, canny_image, canny_image], axis=2)
+        canny_image = Image.fromarray(canny_image)
+    return canny_image
