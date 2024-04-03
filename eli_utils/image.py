@@ -44,7 +44,7 @@ def transform_image_to_k_colors(image: np.ndarray, num_clusters: int) -> np.ndar
     return transformed_image
 
 def make_canny(image: np.ndarray, low: int = 100, high: int=200):
-    is_pil = isinstance(image, Image.Image):
+    is_pil = isinstance(image, Image.Image)
     image = np.array(image)
     canny_image = cv2.Canny(image, low, high)
     canny_image = canny_image[:, :, None]
