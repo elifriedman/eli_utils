@@ -1,6 +1,22 @@
+import io
+import base64
 import numpy as np
 import cv2
 from PIL import Image
+
+
+def base64_to_image(data):
+    return Image.open(io.BytesIO(base64.b64decode(data)))
+
+def image_to_base64(image, for_web: bool=True):
+    is_pil = isinstance(image, Image.Image)
+    image = image if is_pil else Image.fromarray(image)
+    buffered = io.BytesIO()
+    image.save(buffered, format="PNG")
+    img_base64 = str(base64.b64encode(buffered.getvalue()), "utf-8")
+    if for_web is True:
+        img_base64 = f"data:image/png;base64,{img_base64}"
+    return img_base64
 
 def resize_image(image: Image.Image, desired_size: int):
     width, height = image.size
