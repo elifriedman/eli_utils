@@ -55,7 +55,7 @@ def view_in_fiftyone(
     port=None,
     wait=False,
 ):
-    import fityone as fo
+    import fiftyone as fo
 
     if dicts is None:
         dicts = [{}] * len(paths)
