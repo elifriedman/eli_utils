@@ -24,12 +24,6 @@ def parse_args():
         help="IP address to bind the server to",
     )
     parser.add_argument("--port", type=int, help="Port number for the server")
-    parser.add_argument(
-        "--wait",
-        action="store_true",
-        help="Flag to wait for the server to start before returning",
-    )
-
     args = parser.parse_args()
     return args
 
@@ -43,7 +37,6 @@ def main():
     persistent = args.persistent
     address = args.address
     port = args.port
-    wait = args.wait
 
     view_in_fiftyone(
         paths=paths,
@@ -52,7 +45,7 @@ def main():
         persistent=persistent,
         address=address,
         port=port,
-        wait=wait,
+        wait=True,
     )
 
 if __name__ == "__main__":

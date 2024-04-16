@@ -69,5 +69,8 @@ def view_in_fiftyone(
         dataset.add_sample(sample)
     session = fo.Session(dataset=dataset, address=address, port=port)
     if wait is True:
-        session.wait(-1)
+        try:
+            session.wait(-1)
+        except KeyboardInterrupt:
+            pass
     return session
