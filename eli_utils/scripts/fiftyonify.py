@@ -47,7 +47,7 @@ def main():
 
     view_in_fiftyone(
         paths=paths,
-        jsons=jsons,
+        dicts=jsons,
         dataset=dataset,
         persistent=persistent,
         address=address,
