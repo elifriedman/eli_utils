@@ -22,8 +22,11 @@ def imshow(im, figsize=(9, 9), ticks=False, **kwargs):
     plt.imshow(im, **kwargs)
 
 
-def image_grid(images, shape, figsize=(18, 9), **kwargs):
-    assert len(images) == np.prod(shape)
+def image_grid(images, shape: tuple[int, int] = None, figsize=(18, 9), **kwargs):
+    num_images = len(images)
+    if shape is None:
+        shape = (1, num_images) if num_images < 8 else (num_images, 1)
+    assert num_images <= np.prod(shape), f"You have more images than your shape would allow: {num_images=}, {shape=}"
     fig, axes = plt.subplots(*shape, figsize=figsize)
     fig.set_layout_engine(layout="compressed")
     axes = axes.reshape(shape)
@@ -31,7 +34,8 @@ def image_grid(images, shape, figsize=(18, 9), **kwargs):
     for x in range(rows):
         for y in range(columns):
             i = x * columns + y
-            axes[x, y].imshow(images[i], **kwargs)
+            if i < len(images):
+                axes[x, y].imshow(images[i], **kwargs)
             axes[x, y].set_xticks([])
             axes[x, y].set_yticks([])
 
