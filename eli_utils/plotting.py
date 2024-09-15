@@ -28,6 +28,7 @@ def image_grid(images, shape: tuple[int, int] = None, figsize=(18, 9), **kwargs)
         shape = (1, num_images) if num_images < 8 else (num_images, 1)
     assert num_images <= np.prod(shape), f"You have more images than your shape would allow: {num_images=}, {shape=}"
     fig, axes = plt.subplots(*shape, figsize=figsize)
+    fig.patch.set_visible(False)  # make whitespace transparent
     fig.set_layout_engine(layout="compressed")
     if not isinstance(axes, np.ndarray):
         axes = np.array([axes])
