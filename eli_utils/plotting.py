@@ -22,25 +22,26 @@ def imshow(im, figsize=(9, 9), ticks=False, **kwargs):
     plt.imshow(im, **kwargs)
 
 
-def image_grid(images, shape: tuple[int, int] = None, figsize=(18, 9), **kwargs):
+def image_grid(images, shape: tuple[int, int] = None, figsize=(18, 9), no_space: bool = True, **kwargs):
     num_images = len(images)
     if shape is None:
         shape = (1, num_images) if num_images < 8 else (num_images, 1)
     assert num_images <= np.prod(shape), f"You have more images than your shape would allow: {num_images=}, {shape=}"
-    fig, axes = plt.subplots(*shape, figsize=figsize)
+    fig = plt.figure(figsize=figsize, **kwargs)
     fig.patch.set_visible(False)  # make whitespace transparent
-    fig.set_layout_engine(layout="compressed")
-    if not isinstance(axes, np.ndarray):
-        axes = np.array([axes])
-    axes = axes.reshape(shape)
+    fig.subplots_adjust(wspace=0, hspace=0)
+    with_space_but_same_size_plots = not no_space
+    if with_space_but_same_size_plots:
+        fig.set_layout_engine(layout="compressed")
     rows, columns = shape
     for x in range(rows):
         for y in range(columns):
             i = x * columns + y
+            ax = fig.add_subplot(shape[0], shape[1], i+1)
             if i < len(images):
-                axes[x, y].imshow(images[i], **kwargs)
-            axes[x, y].set_xticks([])
-            axes[x, y].set_yticks([])
+                ax.imshow(images[i], **kwargs)
+            ax.set_xticks([])
+            ax.set_yticks([])
 
 
 # %% ../notebooks/plotting.ipynb 4
